@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Invoice Generator</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 40px;
+        }
+        form {
+          max-width: 400px;
+          margin: auto;
+          padding: 20px;
+          border: 1px solid #ddd;
+          border-radius: 10px;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        input, button {
+          width: 100%;
+          padding: 10px;
+          margin: 8px 0;
+          font-size: 16px;
+        }
+        button {
+          background: #4CAF50;
+          color: white;
+          border: none;
+          cursor: pointer;
+          border-radius: 5px;
+        }
+        button:hover {
+          background: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h2 style="text-align:center;">Vehicle Invoice Generator</h2>
+
+<form id="invoiceForm">
+    <label>Dealer ID</label>
+    <input type="text" name="dealerId" required />
+
+    <label>Vehicle ID</label>
+    <input type="text" name="vehicleId" required />
+
+    <label>Customer Name</label>
+    <input type="text" name="customerName" required />
+
+    <button type="submit">Generate Invoice</button>
+</form>
+
+<script>
+    document.getElementById("invoiceForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const dealerId = e.target.dealerId.value;
+      const vehicleId = e.target.vehicleId.value;
+      const customerName = e.target.custName.value;
+
+      const url = `/invoice/generate?dealerId=${dealerId}&vehicleId=${vehicleId}&custName=${encodeURIComponent(custName)}`;
+      window.open(url, "_blank"); // opens & downloads PDF
+    });
+</script>
+</body>
+</html>
